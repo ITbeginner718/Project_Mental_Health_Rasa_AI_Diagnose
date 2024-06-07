@@ -1,0 +1,59 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - 안녕하세요
+    - 안녕
+    - 하이 
+    - 안녕~
+
+
+- intent: letsgo
+  examples: |
+    - 가자 
+    - 그래 가자
+    - 고
+  
+- intent: form_quit
+  examples: |
+    - 진단검사중지
+
+  
+- intent: start_diagnose
+  examples: |
+    - 진단 시작 [권순호](username)
+    - 진단 시작 [k sunho](username)
+    - 진단 시작 [dafasdf](username)
+    - 진단 시작 [mark__dd](username)
+    - 진단 시작 [홍길동](username)
+    - 진단 시작 [user123](username)
+    - 진단 시작 [john_doe](username)
+    - 진단 시작 [이름](username)
+
+- intent: first_diagnose_response
+  examples: |
+    - 아니요 그런 생각은 전혀 들지 않아
+    - 아니요 그렇지 않아
+    - 그런 기분은 들지 않아
+    - 아직은 그런 상황을 겪어 본 적은 없어
+    - 전혀 
+    - 가끔 그런 기분이 들 때가 있어
+    - 가끔씩은 그런 상황이 생기기도 해
+    - 때때로 그런 생각이 들기도 해
+    - 가끔은 그런 감정을 느낄 때가 있어
+    - 자주 그런 기분이 들어
+    - 자주 그런 상황을 겪고 있어
+    - 자주 그런 생각이 들어
+    - 자주 그런 감정을 느껴긴 해
+    - 항상 그런 기분이 들어
+    - 항상 그런 상황을 겪고 있어
+    - 항상 그런 생각이 들어
+    - 항상 그런 감정을 느껴
+  
+
+
+
+
+
+

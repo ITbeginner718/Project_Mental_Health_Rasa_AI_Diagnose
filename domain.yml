@@ -1,0 +1,98 @@
+version: "3.1"
+
+
+# 엔티티
+entities:
+  - username
+
+intents:
+- letsgo
+- greet
+- start_diagnose
+- first_diagnose_response
+- form_quit
+
+
+# slots:
+#   cuisine:
+#     type: text
+#     mappings:
+#       - type: from_entity
+#         entity: cuisine
+
+# forms:
+#   sample_form:
+#     # ignored_intents: 해당 intent에 해당 문장 있으면 무시 
+#     # - chitchat 
+#     required_slots:
+#       - cuisine
+#       - number
+
+# 진단 검사 시작 (들여쓰기 무조건 확인)
+slots:
+  diagnoseResponseNumberList:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+  # 진단 질의 수
+  count:
+    type: float
+    mappings:
+      - type: from_entity # type을 from_text로 하면 값을 입력할 때마다 헤딩 슬롯에 들어옴;;
+        entity: username # 그래서 타입을 entity로 한 다음 action 함수에서 슬롯을 따로 설정 
+
+  # 사용자 이름
+  username:
+    type: text
+    mappings: 
+    - type: from_entity 
+      entity: username 
+
+# 진단 검사 폼
+forms:
+  diagnose_form:
+    required_slots:
+      - diagnoseResponseNumberList
+
+
+
+#양식이 실행되면 매 사용자 차례가 끝날 때마다
+#사용자 지정 액션이 실행되어 최근에 채워진 슬롯의 유효성을 검사합니다.
+
+actions:
+- action_start_diagnose # 첫 번째 질문
+- validate_diagnose_form # 검사 검증 함수
+- action_diagnose_result # 검사 결과 함수
+- action_quit_diagnose #진단 중단 함수 
+
+responses:
+
+  utter_sample_form:
+  - text: 지금부터 종료 키워드가 나올 때까지 계속 입력해주시면 됩니다.
+
+  utter_go:
+  - text: 가자 
+
+  utter_greeting:
+  - text: 안녕하세요 나는 ai챗봇이야 
+
+  utter_welcome:
+  - text: 환영해 
+
+  utter_goodbye:
+  - text: 안녕
+
+  utter_ask_food:
+  - text: 그래 우리 어떤 거 먹을까? 
+
+  utter_decide_food:
+  - text: 좋아 이제 내가 주문할께!
+
+  utter_eat_food_good:
+  - text: 음! 맛있다. 
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

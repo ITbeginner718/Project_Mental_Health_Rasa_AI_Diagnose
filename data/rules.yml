@@ -1,0 +1,37 @@
+version: "3.1"
+
+rules:
+# - rule: 인사
+#   steps:
+#   - intent: greet
+#   - action: utter_greeting
+
+
+  # 이 조건은 form이 완료 되었음을 나타냅니다.
+- rule: Submit diagnose form
+  condition:
+  # 이 조건은 form이 완료되었음을 나타냅니다.
+  - active_loop: diagnose_form
+
+  # form이 완료되었을 때 다음 동작을 실행합니다. 
+  steps:
+    # Form is deactivated
+  - action: diagnose_form
+  - active_loop: null
+
+  #슬롯 비활성화 
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_diagnose_result
+  - action: action_deactivate_loop #폼종료
+
+
+#   #폼 강제 종료
+# - rule: Force-break form
+#   steps:
+#   - intent: form_quit
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - action: action_quit_diagnose
+
+

@@ -1,0 +1,38 @@
+version: "3.1"
+
+stories:
+
+- story: diagnose form
+  steps:
+  - intent: start_diagnose # 처음 시작 
+  - action: action_start_diagnose # 처음 질문 
+  - intent: first_diagnose_response # 첫 응답 (action 다음 form이 실행 되면 예상치 못한 에러 발생)
+  - action: diagnose_form
+  - slot_was_set:
+    - requested_slot: diagnose_response_number_list
+  - active_loop: diagnose_form #form 활성화
+  
+# - story: default
+#   steps:
+#   - intent: letsgo
+#   - action: utter_go
+
+
+# - story: Activate form
+#   steps:
+#   - intent: ask_food
+#   - action: utter_ask_food
+#   - intent: suggest_food
+#   - action: sample_form 
+#   - slot_was_set:
+#     - requested_slot: cuisine
+#     - requested_slot: number
+#   - active_loop: sample_form # restaurant_form 양식이 실행된 후에 활성화되어야 함을 나타냅니다.
+#   - intent: reason_number # 폼 중간에도 계속 답변이 가능하도록 설정
+#   - action: action_reason_number
+
+
+
+
+
+

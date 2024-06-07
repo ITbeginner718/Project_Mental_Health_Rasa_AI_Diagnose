@@ -1,0 +1,2 @@
+rasa run --port 5004
+rasa run actions --port 5054
